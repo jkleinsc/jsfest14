@@ -1,0 +1,839 @@
+<!--
+Derived from
+Google IO 2012 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahé <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Surviving the Offline Apocalypse</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+</head>
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+    <slide class="title-slide fill nobackground" style="background-image: url(images/offline_app.jpg)">
+        <aside class="note">
+          <section>
+            <ul>
+              <li>CURE is a non-profit organization that operates hospitals and programs in 29 countries worldwide treating conditions like clubfoot and hydrocephalus.</li>          
+              <li>I have been developing for the web since 1997 and I love working on the cutting edge</li>
+            </ul>        
+          </section>
+        </aside>
+      
+        <hgroup class="auto-fadein">
+            <h1 data-config-title><!-- populated from slide_config.json --></h1>
+        </hgroup>
+        
+        <footer class="source white">
+            <hgroup class="auto-fadein">
+                <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+                <p data-config-presenter><!-- populated from slide_config.json --></p>
+            </hgroup>
+            source: www.flickr.com/photos/stephendann/80558500
+        </footer>
+    </slide>
+    
+    <slide class="fill nobackground" style="background-image: url(images/glacier.jpg)">
+        <aside class="note">
+            <section>
+                <ul>
+                    <li>Good connectivity here in the states, but conference wifi may be bad, travel (subway, air), places like Glacier NP do not have great connectivity</li>
+                    <li>Globally
+                        <ul>
+                            <li>The reality of where we operate as a non profit; connectivity is not guaranteed</li>
+                            <li>Power failures;$100/month 256k service</li>
+                        </ul>
+                    </li>
+                    <li>If you can't connect to your servers, you are effectively offline</li>
+                </ul>        
+            </section>
+        </aside>
+        <hgroup>
+            <h2>Why Does Offline Matter?</h2>
+        </hgroup>
+        <article class="flexbox">
+            <ul class="build black-contrast">
+                <li>In the US we generally have good connectivity, but not always</li>
+                <li>Globally connectivity varies</li>
+                <li>Unavailable servers</li>
+            </ul>      
+            <footer></footer>
+        </article>
+    </slide>
+        <slide class="fill nobackground">
+        <aside class="note">
+            <section>
+                <ul>
+                    <li>Mobile is probably the best reason to be concerned about offline.</li>
+                    <li>The $25 smart phone means your potential audience just got much larger.</li>
+                    <li>That new audience may not have great connectivity.</li>
+                </ul>
+            </section>
+        </aside>
+        <hgroup>
+            <h2>The $25 smartphone</h2>
+        </hgroup>
+        <article>
+            <img src="images/25phone.jpg" alt="smartphone" title="smartphone" style="float:left; margin-right: 20px;">            
+            <q style="font-size: 30px;">
+                There are almost as many cell-phone subscriptions (6.8 billion) as there are people on this earth (seven billion).
+            </q>                              
+            <footer class="source">sources: twitter.com/codepo8/status/437616415101976576<br/>qz.com/179897/more-people-around-the-world-have-cell-phones-than-ever-had-land-lines</footer>
+        </article>
+    </slide>    
+    <slide class="fill nobackground">
+        <aside class="note">
+            <section>
+                <ul>
+                    <li>Hydrocephalus-water on the brain;400,000 born this year, mostly in the developing world.</li>
+                    <li>Without surgery it is deadly, but Tom (right) was treated at CURE Uganda and is now an excellent student</li>
+                    <li>CURE Hydrocephalus program -- Operating in 15 countries; Work with local surgeons and hospitals.  The work from this network is being used by researchers at Harvard and Penn State to improve the worldwide treatment of hydrocephalus.</li>
+                    <li>But, there was a problem....</li>
+                </ul>        
+            </section>
+        </aside>
+        <hgroup>
+            <h2 >Why Does Offline Matter <span style="color:#92d400;">To Me?</span></h2>
+        </hgroup>
+        <article>
+            <img src="images/hydro.jpg" class="reflect" alt="Hydrocephalus" title="Hydrocephalus">
+            <footer class="source white"></footer>
+        </article>
+    </slide>
+    
+    <slide class="fill nobackground" style="background-image: url(images/map.jpg);background-position:center;background-size: 1024px auto;background-repeat: no-repeat;">
+        <aside class="note">
+            <section>
+                <ul>
+                    <li>How do we track medical treatment where we don't have hospitals?</li>
+                    <li>Needed something portable</li>
+                    <li>Needed something that could be deployed worldwide</li>
+                    <li>Needed something that could sync to a central location</li>
+                    <li>Traditional approach -- local db and server -- </li>
+                    <li>What if we used HTML5 features?</li>
+                </ul>
+            </section>
+        </aside>      
+        <hgroup>      
+            <h2>The Problem: 29 countries</h2>
+        </hgroup>
+        <article>      
+        </article>
+    </slide>    
+    <slide class="fill nobackground" style="background-image: url(images/hydroos.png)">
+        <aside class="note">
+            <section>
+                <ul>
+                    <li>The solution was to build an HTML5 "offline first" application</li>
+                    <li>Offline first design assumes user is offline</li>
+                    <li>In Offline first don't treat offline as an error condition.</li>
+                    <li>Online access is a secondary concern (use it if you have it).</li>
+                    <li>In thinking about offline first apps, you need a survivalist mentality.</li>
+                </ul>        
+            </section>
+        </aside>
+        <hgroup>
+            <h2 class="black-contrast">The Solution: "Offline First" EMR</h2>
+        </hgroup>      
+        <article>
+            <footer class="source"></footer>
+        </article>
+    </slide>        
+
+    <slide>
+        <aside class="note">
+            <section>
+                <ul>
+                    <li>Fortunately someone made this helpful survival list which should guide us</li>
+                    <li>It follows the rules of offline survival
+                        <ul>
+                            <li>Application Cache</li>
+                            <li>IndexedDB</li>
+                            <li>FileSystem API</li>
+                            <li>Syncing online</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+        </aside>
+        <hgroup>
+            <h2>Rules for Survival</h2>
+        </hgroup>
+        <article class="flexbox">
+            <img src="images/list.jpg" class="reflect" alt="Rules" title="Rules">
+            <ul class="build">
+                <li>Live off the grid in a fortified shelter</li>
+                <li>Store your supplies</li>
+                <li>Have adequate weaponry</li>
+                <li>Use your escape plan</li>
+            </ul>
+            <footer class="source white">
+                source: www.flickr.com/photos/stephendann/80558500
+            </footer>
+        </article>
+    </slide>
+    
+    <slide class="fill nobackground" style="background-image: url(images/off_grid.jpg)">
+        <aside class="note">
+            <section>
+                <ul>
+                    <li>The first rule for survival is to live off the grid in a fortified shelter.</li>
+                    <li>Application Cache is used to save all the resources required to render a page offline.</li>
+                    <li>Application Cache can be challenging to work with.</li>
+                    <li>While Application Cache can be painful to work with for single page apps it works pretty well.</li>
+                </ul>        
+            </section>
+        </aside>      
+        <hgroup>
+            <h2 class="white">Live off the grid: Application Cache</h2>
+        </hgroup>      
+        <footer class="source white">
+            source: www.flickr.com/photos/jrimages/7688229244
+        </footer>
+    </slide>
+
+    <slide>
+        <aside class="note">
+            <section>
+                <ul>
+                    <li>In order to use the Application Cache, we need to first declare a manifest file in our HTML.</li>
+                    <li>The manifest file allows us to specify what files are needed for offline use.</li>
+                    <li>Current HTML file included implicitly</li>
+                    <li>Some Gotchas/Issues to be aware of</li>
+                    <ul>
+                        <li>Files always are served from application cache even when you are online</li>
+                        <li>404 files in the manifest will cause the manifest to fail</li>
+                    </ul>
+                </ul>
+            </section>
+        </aside>      
+        <hgroup>
+            <h2>Live off the grid: Application Cache</h2>
+        </hgroup>
+        <article>
+            <pre class="prettyprint" data-lang="html">
+        &lt;html <b>manifest="manifest.appcache"</b>&gt;
+            </pre>
+            <pre class="prettyprint" data-lang="appcache">
+        CACHE MANIFEST
+        #version 1.0
+        
+        <b>CACHE:
+        #files required for offline</b>        
+        /css/mycss.min.css
+        /images/lol_cat.png
+        /js/myjs.min.js
+        
+        NETWORK:
+        #fetch everything else from the network when online
+        *
+            </pre>
+        </article>
+    </slide>
+    <slide>
+        <aside class="note">
+            <section>
+                <ul>
+                    <li>The only way to update the application cache is to change the manifest file.</li>
+                    <li>You can make the application manifest dynamic to make sure updates are picked up.</li>
+                    <li>In this example the manifest file gets updated every time the app file gets updated by a build.</li>                    
+                    <li>Application cache works in conjuction with the existing browser cache.</li>
+                </ul>        
+            </section>
+        </aside>           
+        <hgroup>
+            <h2>Live off the grid: Application Cache</h2>
+        </hgroup>
+        <article>
+            <pre class="prettyprint" data-lang="html">
+        &lt;html manifest="<b>manifest.appcache.php</b>"&gt;
+            </pre>
+            <pre class="prettyprint" data-lang="appcache">
+        <b>&lt;?php
+        function autoVer($filename) {
+            //return filename with modified timestamp
+        }?&gt;</b>
+        CACHE MANIFEST
+        #version 1.0  <b>&lt;?php autoVer('js/app-all.js'); ?&gt;</b>
+
+        CACHE:
+        #files required for offline
+        /css/mycss.min.css
+        /images/lol_cat.png
+        <b>&lt;?php autoVer('js/app-all.js'); ?&gt;</b>
+                
+        NETWORK:
+        #fetch everything else from the network when online
+        *
+            </pre>
+        </article>
+    </slide>
+    <slide class="fill nobackground" style="background: url(images/caniappcache.png) no-repeat center;">
+        <aside class="note">
+            <section>
+                <ul>
+                    <li>Widely supported in most browsers</li>
+                    <li>Not supported in IE < 10</li>
+                    <li>Not supported in Opera Mini</li>
+                    <li>
+                        For more information on AppCache, I highly recommend Jake Archibald's work:
+                        <ul>
+                            <li><a href="http://www.alistapart.com/articles/application-cache-is-a-douchebag/">A List Apart</a></li>                
+                            <li><a href="http://www.flickr.com/photos/jaffathecake/8015087167/in/photostream/">How AppCache works</a></li>
+                        </ul> 
+                    </li>
+                </ul>        
+            </section>
+        </aside>
+      
+        <hgroup>
+            <h2 class="black-contrast">Application Cache Browser Support</h2>
+        </hgroup>
+        <article class="flexbox">    
+            <footer class="source">
+                source: caniuse.com/#feat=offline-apps<br/>github.com/mastahyeti/browserstats
+            </footer>
+        </article>
+    </slide>
+    
+    <slide class="fill nobackground">
+        <aside class="note">
+            <section>
+                <ul>
+                    <li>As I mentioned previously App Cache can be challenging to work with.  Because of this a new spec, Service Worker, is currently a work in progress.</li>
+                    <li>App Cache is kind of like the steering wheel on the left -- minimal input is required from the user.  App Cache is a black box.</li>
+                    <li>Service Workers are like a steering wheel from a Formula 1 racing car.  You have way more control over what happens with your application's assets. Service Workers require more input from developers.  But they provide a level of precision that application cache can't.  You need to know what you are doing to use it.</li>
+                </ul>        
+            </section>
+        </aside>
+        <hgroup>
+            <h2 >Application Cache vs Service Worker</h2>
+        </hgroup>
+        <article>
+            <img src="images/suzuki.jpg" width="450">
+            <img src="images/f1.png" width="450">
+            <br/><br/>
+            <p>Service Worker Spec: <a href="https://github.com/slightlyoff/ServiceWorker">https://github.com/slightlyoff/ServiceWorker</a></p>
+            <p>Service Worker Polyfill: <a href="https://github.com/phuu/ServiceWorker-Polyfill">https://github.com/phuu/ServiceWorker-Polyfill</a></p>
+            <footer class="source white"></footer>
+        </article>
+    </slide>
+    
+    
+    <slide class="fill nobackground" style="background-image: url(images/stockpile.jpg)">
+        <aside class="note">
+            <section>
+                <ul>
+                    <li>The 2nd rule for offline survival - make sure you have somewhere to put your supplies(your data).</li>
+                    <li>IndexedDB is an NOSQL database -- its an object store which uses key-value pairs.</li>
+                    <li>IndexedDB uses the <a href="http://www.w3.org/TR/html5/infrastructure.html#internal-structured-cloning-algorithm">structured cloning algorithm</a> to ensure objects get stored/retrieved properly (eg Blob goes in; Blob comes out)</li>
+                    <li>Designed to support large amounts of data; has indexes for searching.</li>
+                </ul>        
+            </section>
+        </aside>           
+      
+        <hgroup>
+            <h2 class="white">Supplies: IndexedDB</h2>
+        </hgroup>
+        <article>
+            <footer class="source white">source: www.flickr.com/photos/24218656@N03/5934567119</footer>
+        </article>
+    </slide>
+
+    <slide>
+        <aside class="note">
+            <section>
+                <ul>
+                    <li>One word of warning about indexedDB -- the API is heavily asynchronous.</li>
+                    <li>Consider how your UI deals with async just like you would with XHR.</li>
+                    <li>Promises could be useful for this.</li>
+                </ul>      
+            </section>
+        </aside>
+        <article class="flexbox vcenter">
+            <img src="images/async.jpg" alt="ASYNC all the things" title="ASYNC all the things" style="height:600px;">
+        </article>
+    </slide>
+        
+    <slide>
+        <aside class="note">
+            <section>
+                <ul>
+                    <li>Open the database.</li>
+                    <li>On version change; define the database structure.</li>
+                    <li>Object stores correspond to tables.</li>
+                    <li>Remember that the database open is async, so you need to wait until that action finishes before interacting with db.</li>
+                </ul>
+            </section>
+        </aside>      
+        <hgroup>
+            <h2>Supplies: IndexedDB</h2>
+        </hgroup>
+        <article>
+            <pre class="prettyprint" data-lang="javascript">
+&lt;script&gt;
+window.indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB;
+var myDB, dbVersion = 1, <b>openRequest = window.indexedDB.open('MyDatabase', dbVersion)</b>;
+openRequest.onerror = function(errorEvent) {
+    //Async response, something didn't work
+}
+openRequest.onsuccess = function(successEvent) {    
+    myDB = successEvent.target.result; //Async response, grab the database from the request.
+    <b>doStuffAfterOpen(); //Database is ready for use</b>
+}
+<b>openRequest.onupgradeneeded = function(upgradeEvent) { //Version change!!</b>
+    myDB = upgradeEvent.target.result;
+    <b>//Define database structure
+    var newObjectStore = myDB.createObjectStore('lolcats', { keyPath: 'id' });
+    newObjectStore.createIndex('nameidx', 'name', { unique: true });
+    newObjectStore.createIndex('categoryidx', 'category');</b>
+}
+&lt;/script&gt;
+            </pre>
+        </article>
+    </slide>
+    <slide>
+        <aside class="note">
+            <section>
+                <ul>
+                    <li>Once the database has been opened, we can work with it.</li>
+                    <li>All database work requires a transaction.</li>
+                    <li>This example shows adding an object and then retrieving it.</li>
+                </ul>      
+            </section>
+        </aside>     
+        <hgroup>
+            <h2>Supplies: IndexedDB</h2>
+        </hgroup>
+        <article>
+            <pre class="prettyprint" data-lang="javascript">
+&lt;script&gt;
+function doStuffAfterOpen() { //This will only work after the async call to open the DB    
+    <b>var transaction = myDB.transaction('lolcats','readwrite');
+    var lolStore = transaction.objectStore('lolcats');
+    var addRequest = lolStore.add({
+        id: 1,
+        name: 'Caturday',
+        category: 'Lazy kitty',
+        url: 'http://cheezburger.com/6677232128'
+    });</b>
+    addRequest.onsuccess = function(successEvent) {//Async response, yes you can haz cheezburger};
+    addRequest.onerror = function(errorEvent) {//Async response, no cheezburger for you};
+
+    <b>var getRequest = lolStore.get(1); //Get by id</b>
+    getRequest.onsuccess = function(successEvent) { //Async response        
+        console.log("Funny kitty here: " + getRequest.result.url);
+    };
+    getRequest.onerror = function(errorEvent) {//Async response, no funny kitties here};
+}
+&lt;/script&gt;
+            </pre>
+        </article>
+    </slide>
+    <slide>
+        <aside class="note">
+            <section>
+                <ul>
+                    <li>As the name denotes, IndexedDB supports indexes.</li>
+                    <li>You use keyranges to search indexes</li>
+                    <li>We can access a range of indexes</li>
+                    <li>We can also use one specific index (particularly useful for non unique indexes)</li>
+                </ul>      
+            </section>
+        </aside>     
+        <hgroup>
+            <h2>Supplies: IndexedDB</h2>
+        </hgroup>
+        <article>
+            <pre class="prettyprint" data-lang="javascript">
+&lt;script&gt;
+<b>var index = lolStore.index('nameidx'),
+    keyRange = IDBKeyRange.bound('C', 'H'), //Search for names between C - H
+    idxRequest = index.openCursor(keyRange);</b>
+
+idxRequest.onsuccess = function(successEvent) { //Async response 
+    var cursor = successEvent.target.result;
+    if (cursor) {
+        console.log("Using key range C - H, Found kitty with name of:"+cursor.key);                  
+        cursor["continue"]();
+    }
+};
+index = lolStore.index('categoryidx');
+<b>keyRange = IDBKeyRange.only('Cat beard'); //Search for specific index value of Cat beard
+idxRequest = index.openCursor(keyRange);</b>
+idxRequest.onsuccess = function(successEvent) {//Found cat beards!!!!};
+&lt;/script&gt;
+            </pre>
+        </article>
+    </slide>    
+    <slide>
+        <aside class="note">
+            <section>
+                <ul>
+                    <li>Chrome devtools gives us a great view of IndexedDB content</li>
+                    <li>Also useful for Application Cache and FileSystem API</li>
+                </ul>        
+            </section>
+        </aside>      
+        <hgroup>
+            <h2>Supplies: IndexedDB</h2>
+        </hgroup>
+        <article class="flexbox">
+            <img src="images/chromeconsole.png" alt="Chrome Developer Tools" title="Rules">     
+            <footer class="source white"></footer>
+        </article>
+    </slide>
+    <slide class="fill nobackground" style="background: url(images/caniidxdb.png) no-repeat center;">
+        <aside class="note">
+            <section>
+                <ul>
+                    <li>Supported by latest versions of firefox, chrome, opera, IE and android.</li>
+                    <li>68% global browser support</li>
+                    <li>Safari doesn't support it in desktop or mobile.</li>
+                    <li>Opera mini not supported.</li>
+                    <li>Fortunately, we have a solution for most unsupported browsers:</li>                    
+                </ul>        
+            </section>
+        </aside>
+
+        <hgroup>
+            <h2 class="black-contrast">IndexedDB Browser Support</h2>
+        </hgroup>
+        <article class="flexbox">    
+            <footer class="source">
+                source: http://caniuse.com/#feat=indexeddb<br/>github.com/mastahyeti/browserstats
+            </footer>
+        </article>
+    </slide>    
+    <slide class="fill nobackground" style="background: url(images/caniidxpoly.png) no-repeat center;">
+        <aside class="note">
+            <section>
+                <ul>
+                    <li>We can use a polyfill to add support for IndexedDB to most browsers.  A polyfill is simply code that mimics native browser technology.  This polyfill uses WebSQL to add support for IndexedDB to most browsers: <a href="http://nparashuram.com/IndexedDBShim/">http://nparashuram.com/IndexedDBShim</a>
+                    <li>Most notably adds Safari support and older versions of Android</li>
+                    <li>86% global browser support; no opera mini or older IE.</li>
+                    <li>Due to my work, polyfill now partially supports Structured Cloning Algorithm: <a href="https://github.com/axemclion/IndexedDBShim/pull/68">GitHub pull request</a></li>
+                </ul>        
+            </section>
+        </aside>
+
+        <hgroup>
+            <h2 class="black-contrast">IndexedDB Browser Support with Polyfill</h2>
+        </hgroup>
+        <article class="flexbox">    
+            <footer class="source">
+                source: http://caniuse.com/#feat=indexeddb<br/>github.com/mastahyeti/browserstats
+            </footer>
+        </article>
+    </slide>
+    <slide class="fill nobackground" style="background-image: url(images/weapon.jpg);background-position:center; ">
+        <aside class="note">
+            <section>
+                <ul>
+                    <li>The third rule for survival is to have adequate weapons.  One of the weapons we may need for offline is file storage.</li>
+                    <li>FileSystem API allows web apps to read and write files in sandboxed section of the user's local file system.</li>
+                    <li>Async APIs just like indexedDB</li>          
+                    <li>Used for offline storage of photos.</li>
+                </ul>        
+            </section>
+        </aside>
+        <hgroup>
+            <h2>Adequate Weaponry: FileSystem API</h2>
+        </hgroup>     
+        <article>
+            <footer class="source white">source: www.flickr.com/photos/hyperxp/7473652752/</footer>
+        </article>
+    </slide>
+    
+    <slide>
+        <aside class="note">
+            <section>
+                <ul>
+                    <li>File storage can be PERSISTENT or TEMPORARY.</li>
+                    <li>Chrome uses the requestQuota function to ask the user for a certain amount of storage.</li>
+                    <li>This example reads a file from a file input field and stores it locally.</li>
+                    <li>In this application, before the file is saved to the local filesystem we use canvas to resize the image.</li>
+                </ul>        
+            </section>
+        </aside>      
+        <hgroup>
+            <h2>Adequate Weaponry: FileSystem API</h2>
+        </hgroup>
+        <article>
+            <pre class="prettyprint" data-lang="javascript">
+var fileSystem, size = 1024*1024; //1MB
+function handleError(errorEvent) { 
+    console.log('Error with filesystem API'); //Async error handler
+}
+function openFileSystem() {
+    <b>window.requestFileSystem(PERSISTENT, size, handleOpenFileSystem, handleError);</b>
+}
+function handleOpenFileSystem(newFileSystem) {
+    fileSystem = newFileSystem;
+    <b>//Save file from &lt;input type="file" name="fileinput" id="fileinput"&gt;</b>
+    var fileToSave = document.querySelector('#fileinput').files[0];
+    <b>fileSystem.root.getFile</b>(fileToSave.name, {create: true, exclusive: true}, function(fileEntry) {        
+        <b>fileEntry.createWriter</b>(function(fileWriter) {
+            <b>fileWriter.write(fileToSave);</b>
+            console.log("file available at:"+fileEntry.toURL());
+        }, handleError);
+    }, handleError);    
+}
+<b>navigator.webkitPersistentStorage.requestQuota(PERSISTENT, size, openFileSystem, handleError);</b>
+            </pre>
+        </article>
+    </slide>
+
+    <slide>
+        <aside class="note">
+            <section>
+                <ul>
+                    <li>This example shows pulling out a local file as a data url.</li>
+                    <li>That data url can then be sent via ajax and turned back into a file on the server via PHP.</li>
+                </ul>
+            </section>
+        </aside>            
+        <hgroup>
+            <h2>Adequate Weaponry: FileSystem API</h2>
+        </hgroup>
+        <article>
+            <pre class="prettyprint" data-lang="javascript">
+&lt;script&gt;
+function getFileAsDataURL(fileSystem) {
+  //First get the file entry representing the call (async response)
+  <b>fileSystem.root.getFile('lol_cat.jpg', {}, function(fileEntry) {</b>
+    //Next get the actual file (async response)      
+    <b>fileEntry.file(function(fileToRead) {</b>
+        //Next read the file as dataURL(async response)      
+       <b>var reader = new FileReader();
+       reader.onloadend = function(readerEvent) {           
+         var dataURL = readerEvent.target.result;         
+       };
+       reader.readAsDataURL(fileToRead);</b>
+    }, handleError);
+  }, handleError);
+}
+window.requestFileSystem(PERSISTENT, size, getFileAsDataURL, handleError);
+&lt;/script&gt;
+            </pre>
+        </article>
+    </slide>
+    <slide class="fill nobackground" style="background: url(images/canifileapi.png) no-repeat center;">
+        <aside class="note">
+            <section>
+                <ul>
+                    <li>Chrome only</li>
+                    <li>But, there is a polyfill...</li>
+                </ul>        
+            </section>
+        </aside>
+
+        <hgroup>
+            <h2 class="black-contrast">FileSystem Browser Support</h2>
+        </hgroup>
+        <article class="flexbox">    
+            <footer class="source">
+                source: caniuse.com/#feat=offline-apps<br/>github.com/mastahyeti/browserstats
+            </footer>
+        </article>
+    </slide>
+    <slide class="fill nobackground" style="background: url(images/canifilepoly.png) no-repeat center;">
+        <aside class="note">
+            <section>
+                <ul>
+                    <li>Polyfill uses IndexedDB to provide capability: <a href="https://github.com/ebidel/idb.filesystem.js">https://github.com/ebidel/idb.filesystem.js</a></li>
+                    <li>Note that Safari and Android are out of luck, but...</li>                        
+                </ul>        
+            </section>
+        </aside>
+
+        <hgroup>
+            <h2 class="black-contrast">FileSystem Browser Support: Polyfill</h2>
+        </hgroup>
+        <article class="flexbox">
+            
+            <footer class="source">
+                <p>Polyfill: <a href="https://github.com/ebidel/idb.filesystem.js">https://github.com/ebidel/idb.filesystem.js</a></p>
+                source: caniuse.com/#feat=offline-apps<br/>github.com/mastahyeti/browserstats
+            </footer>
+        </article>
+    </slide>
+ 
+    <slide>
+        <aside class="note">
+            <section>
+                <ul>
+                    <li>Because of the recent changes to the IndexedDB polyfill, you can now use the filesystem API polyfill on top of the IndexedDB polyfill</li>
+                    <li>Brings FileSystem API to most notably iOS, Safari and older Android Browsers</li>
+                    <li>See it working:<a href="https://github.com/jkleinsc/polypolyfile">https://github.com/jkleinsc/polypolyfile</a></li>
+                </ul>        
+            </section>
+        </aside>
+
+        <hgroup>
+            <h2>FileSystem Browser Support: Polyfill</h2>
+        </hgroup>
+        <article class="flexbox vcenter">
+            <img src="images/polypoly.jpg" alt="yo dawg i heard you like polyfills" title="yo dawg i heard you like polyfills" style="height:500px;">
+            <p>See it working:<a href="https://github.com/jkleinsc/polypolyfile">https://github.com/jkleinsc/polypolyfile</a></p>
+        </article>
+    </slide> 
+    <slide class="fill nobackground" style="background-image: url(images/escape_hatch.jpg)">
+        <aside class="note">
+            <section>
+                <ul>
+                    <li>So far we have looked at three rules for survival: 1) Fortified shelter(Application Cache), 2) Supplies(Indexed DB) and 3) Adequate weaponry(Filesystem API)</li>
+                    <li>Now let's look at our last rule of survival:  Use your escape plan.  Storing data offline becomes much more useful if we can also save it online</li>
+                </ul>
+            </section>
+        </aside>      
+        <hgroup>
+            <h2 class="black-contrast">An Escape Plan</h2>
+        </hgroup>      
+        <footer class="source white">
+            source: www.flickr.com/photos/samsamcardiff/7326744462/
+        </footer>
+    </slide>
+    
+    <slide>
+        <aside class="note">
+            <section>
+                <ul>
+                    <li>In order to properly execute our escape plan, we first need to know when we are online</li>
+                    <li>Fortunately HTML5 gives us the navigator.onLine property</li>          
+                    <li>Let's look at the definition of this property</li>
+                    <li>Might be online seems ridiculous, but if you think about it, your online connectivity may actual vary from site to site due to site outages, dns problems and DDOS</li>
+                </ul>
+            </section>
+        </aside>
+        <hgroup>
+            <h2>An Escape Plan: navigator.onLine</h2>
+        </hgroup>
+        <article class="flexbox">
+            <img src="images/trust.jpg" alt="Trust No One" title="Trust No One" style="height:500px;">                  
+            <ul class="build">        
+                <li>
+                    <b>window.navigator.onLine</b>
+                    <p style="font-style: italic;">"Returns false if the user agent is<br/> definitely offline (disconnected from the<br/> network). <b>Returns true if the user agent<br/> might be online.</b>
+                        The events online and<br/> offline are fired when the value of this<br/> attribute changes."
+                    </p>
+                </li>
+                <li><span class="red"><b>*Might*</b></span> be online??</li>
+                <li>window.online event gives a hint of<br/>online availability</li>
+                <li>XHR is our friend</li>
+            </ul>
+        </article>
+    </slide>
+    
+    <slide>
+        <aside class="note">
+            <section>
+                <ul>
+                    <li>Here is an example showing how we can detect connectivity</li>
+                    <li>We can use the online/offline events</li>
+                    <li>We can use xhr</li>
+                </ul>        
+            </section>
+        </aside>      
+        <hgroup>
+            <h2>An Escape Plan: navigator.onLine</h2>
+        </hgroup>
+        <article>
+            <pre class="prettyprint" data-lang="javascript">
+//Initialize connection status to navigator.onLine property.
+var onlineStatus = <b>navigator.onLine;</b>
+<b>window.addEventListener('online', function(e) {</b>
+    onlineStatus = true;  //Persist offline data to the server
+});
+<b>window.addEventListener('offline', function(e) {</b>
+    onlineStatus = false;
+});
+var xhr = new XMLHttpRequest();
+xhr.onreadystatechange = function() {
+    if (xhr.readyState != 4) {
+        return;
+    }
+    <b>if (xhr.status == 200) {
+        onlineStatus = true;</b> //The ajax call succeeded, therefore the server is online to us.
+    }<b> else {
+        onlineStatus = false;</b> //The ajax call failed, therefore the server is offline to us.
+    }
+}
+           </pre>
+        </article>
+    </slide>        
+    <slide class="fill nobackground" style="background-image: url(images/training.jpg);background-position:center; background-repeat: no-repeat; ">      
+        <aside class="note">
+            <section>
+                <ul>
+                    <li>In closing, the people you see here are all survivors of the offline apocalypse because they are using an app that follows the rules:
+                        Fortified shelter -- Application Cache;
+                        Supplies -- Indexed DB;
+                        Adequate weaponry -- FileSystem API;
+                        Use your escape plan -- Sync online
+                    </li>
+                    <li>This group of people are working in countries with poor internet access, yet they are able to successfully report on patients.  To date there are around 10,000 patients in the system whose lives have been changed.</li>                   
+                </ul>        
+            </section>
+        </aside>
+    </slide>
+    
+    <slide class="fill nobackground">
+        <aside class="note">
+            <section>
+                <ul>
+                    <li>Right now there are thousands of charity hospitals that lack proper software to run their hospitals.</li>
+                    <li>We would like to change that with a new open source project: HospitalRun</li>
+                    <li>HospitalRun aims to take this offline first emr and expand it to a complete hospital solution for charitable hospitals.</li>
+                    <li>Want to help?</li>
+                </ul>
+            </section>
+        </aside>      
+        <hgroup>
+            <h2>One More Thing</h2>
+        </hgroup>
+
+        <article>
+            <img src="images/hosprun.png" alt="hospitalrun" title="hospitalrun">
+            <br/><br/>
+            <p>Github:<a href="https://github.com/hospitalrun">https://github.com/hospitalrun</a></p>           
+            <footer class="source"></footer>
+        </article>
+    </slide>
+    
+    
+    <slide class="thank-you-slide segue nobackground" style="background-image: url(images/background.jpg);">
+        <article class="flexbox vleft auto-fadein">
+            <h2>Thank You!</h2>
+        </article>
+        <p class="auto-fadein" data-config-contact>
+      <!-- populated from slide_config.json -->
+    </p>
+  </slide>
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>
