@@ -30,8 +30,8 @@ URL: https://code.google.com/p/io-2012-slides
         <aside class="note">
           <section>
             <ul>
-              <li>CURE is a non-profit organization that operates hospitals and programs in 29 countries worldwide treating conditions like clubfoot and hydrocephalus.</li>          
-              <li>I have been developing for the web since 1997 and I love working on the cutting edge</li>
+              <li>CURE is a non-profit organization that operates hospitals and programs in 29 countries worldwide treating kids with conditions like clubfoot and hydrocephalus.</li>          
+              <li>I have been developing for the web since 1997 and am currently working on apps for the developing world.</li>
             </ul>        
           </section>
         </aside>
@@ -54,13 +54,12 @@ URL: https://code.google.com/p/io-2012-slides
             <section>
                 <ul>
                     <li>Good connectivity here in the states, but conference wifi may be bad, travel (subway, air), places like Glacier NP do not have great connectivity</li>
-                    <li>Globally
-                        <ul>
-                            <li>The reality of where we operate as a non profit; connectivity is not guaranteed</li>
+                    <li><ul><li>Globally - The reality of where we operate as a non profit; connectivity is not guaranteed,</li>
+                            <li>For example, places like DRC and Mali in Africa have less than 1/2Mbps average speed</li>
                             <li>Power failures;$100/month 256k service</li>
                         </ul>
                     </li>
-                    <li>If you can't connect to your servers, you are effectively offline</li>
+                    <li>If you can't connect to your servers, you are effectively offline.</li>
                 </ul>        
             </section>
         </aside>
@@ -80,9 +79,9 @@ URL: https://code.google.com/p/io-2012-slides
         <aside class="note">
             <section>
                 <ul>
-                    <li>Mobile is probably the best reason to be concerned about offline.</li>
+                    <li>Mobile is probably the best reason to be care about offline.</li>
                     <li>The $25 smart phone means your potential audience just got much larger.</li>
-                    <li>That new audience may not have great connectivity.</li>
+                    <li>That new audience may not have great connectivity, and that makes them prime candiates for offline first apps.</li>
                 </ul>
             </section>
         </aside>
@@ -109,7 +108,7 @@ URL: https://code.google.com/p/io-2012-slides
             </section>
         </aside>
         <hgroup>
-            <h2 >Why Does Offline Matter <span style="color:#92d400;">To Me?</span></h2>
+            <h2 >Why Does Offline Matter <span style="color:#92d400;">To CURE?</span></h2>
         </hgroup>
         <article>
             <img src="images/hydro.jpg" class="reflect" alt="Hydrocephalus" title="Hydrocephalus">
@@ -126,7 +125,7 @@ URL: https://code.google.com/p/io-2012-slides
                     <li>Needed something that could be deployed worldwide</li>
                     <li>Needed something that could sync to a central location</li>
                     <li>Traditional approach -- local db and server -- </li>
-                    <li>What if we used HTML5 features?</li>
+                    <li>What if we built a webapp using HTML5 offline features?</li>
                 </ul>
             </section>
         </aside>      
@@ -140,11 +139,11 @@ URL: https://code.google.com/p/io-2012-slides
         <aside class="note">
             <section>
                 <ul>
-                    <li>The solution was to build an HTML5 "offline first" application</li>
+                    <li>In order to solve this problem, I built an "offline first" web application.</li>
                     <li>Offline first design assumes user is offline</li>
                     <li>In Offline first don't treat offline as an error condition.</li>
                     <li>Online access is a secondary concern (use it if you have it).</li>
-                    <li>In thinking about offline first apps, you need a survivalist mentality.</li>
+                    <li>So lets take a look at how I built this offline first web application.</li>
                 </ul>        
             </section>
         </aside>
@@ -160,15 +159,17 @@ URL: https://code.google.com/p/io-2012-slides
         <aside class="note">
             <section>
                 <ul>
-                    <li>Fortunately someone made this helpful survival list which should guide us</li>
-                    <li>It follows the rules of offline survival
+                    <li>In thinking about offline first apps, you need a survivalist mentality.</li>
+                    <li>I found this zombie apocalypse survival list which can help guide us.</li>
+                    <li>
                         <ul>
-                            <li>Application Cache</li>
-                            <li>IndexedDB</li>
-                            <li>FileSystem API</li>
-                            <li>Syncing online</li>
+                            <li>We can follow the rules of offline survival listed here: 1) Application Cache</li>
+                            <li>2) IndexedDB</li>
+                            <li>3) FileSystem API</li>
+                            <li>4) Syncing online</li>
                         </ul>
                     </li>
+                    <li>Now that we have a list, lets take a look how the web app I built follows these rules.</li>
                 </ul>
             </section>
         </aside>
@@ -679,7 +680,7 @@ window.requestFileSystem(PERSISTENT, size, getFileAsDataURL, handleError);
         <aside class="note">
             <section>
                 <ul>
-                    <li>Because of the recent changes to the IndexedDB polyfill, you can now use the filesystem API polyfill on top of the IndexedDB polyfill</li>
+                    <li>Because of the recent changes to the IndexedDB polyfill, you can now use the Filesystem API polyfill on top of the IndexedDB polyfill</li>
                     <li>Brings FileSystem API to most notably iOS, Safari and older Android Browsers</li>
                     <li>See it working:<a href="https://github.com/jkleinsc/polypolyfile">https://github.com/jkleinsc/polypolyfile</a></li>
                 </ul>        
@@ -700,6 +701,7 @@ window.requestFileSystem(PERSISTENT, size, getFileAsDataURL, handleError);
                 <ul>
                     <li>So far we have looked at three rules for survival: 1) Fortified shelter(Application Cache), 2) Supplies(Indexed DB) and 3) Adequate weaponry(Filesystem API)</li>
                     <li>Now let's look at our last rule of survival:  Use your escape plan.  Storing data offline becomes much more useful if we can also save it online</li>
+                    <li>The app I built syncs online for two reasons: 1) Research and 2) If a user's computer is stolen or broken, we can restore their data from the online repo.</li>
                 </ul>
             </section>
         </aside>      
@@ -726,7 +728,7 @@ window.requestFileSystem(PERSISTENT, size, getFileAsDataURL, handleError);
             <h2>An Escape Plan: navigator.onLine</h2>
         </hgroup>
         <article class="flexbox">
-            <img src="images/trust.jpg" alt="Trust No One" title="Trust No One" style="height:500px;">                  
+            <img src="images/ondoge.png" alt="Such online" title="Such online">                  
             <ul class="build">        
                 <li>
                     <b>window.navigator.onLine</b>
@@ -736,7 +738,7 @@ window.requestFileSystem(PERSISTENT, size, getFileAsDataURL, handleError);
                 </li>
                 <li><span class="red"><b>*Might*</b></span> be online??</li>
                 <li>window.online event gives a hint of<br/>online availability</li>
-                <li>XHR is our friend</li>
+                <li>XHR is our friend</li>                 
             </ul>
         </article>
     </slide>
@@ -748,6 +750,7 @@ window.requestFileSystem(PERSISTENT, size, getFileAsDataURL, handleError);
                     <li>Here is an example showing how we can detect connectivity</li>
                     <li>We can use the online/offline events</li>
                     <li>We can use xhr</li>
+                    <li>In my app when a record is saved or when the app senses a switch to online, we attempt to sync the data.  I don't have time to go into the syncing process, but I will say that when syncing from multiple clients modifying the same data, you have to sync carefully.</li>
                 </ul>        
             </section>
         </aside>      
@@ -782,7 +785,7 @@ xhr.onreadystatechange = function() {
         <aside class="note">
             <section>
                 <ul>
-                    <li>In closing, the people you see here are all survivors of the offline apocalypse because they are using an app that follows the rules:
+                    <li>In closing, the people you see here are all using the offline first web app that I built using the rules we talked about:
                         Fortified shelter -- Application Cache;
                         Supplies -- Indexed DB;
                         Adequate weaponry -- FileSystem API;
@@ -794,26 +797,27 @@ xhr.onreadystatechange = function() {
         </aside>
     </slide>
     
-    <slide class="fill nobackground">
+    <slide class="fill nobackground" style="background-image: url(images/hosprun.png);background-position:center; background-repeat: no-repeat; ">
         <aside class="note">
             <section>
                 <ul>
-                    <li>Right now there are thousands of charity hospitals that lack proper software to run their hospitals.</li>
+                    <li>Right now there many charitable healthcare organizations that lack proper software to run their orgs.</li>
                     <li>We would like to change that with a new open source project: HospitalRun</li>
-                    <li>HospitalRun aims to take this offline first emr and expand it to a complete hospital solution for charitable hospitals.</li>
+                    <li>HospitalRun aims to take this offline first emr and expand it to a complete healthcare solution for charitable healthcare orgs.</li>
                     <li>Want to help?</li>
                 </ul>
             </section>
         </aside>      
         <hgroup>
-            <h2>One More Thing</h2>
+            <h2 class="white">One More Thing</h2>
         </hgroup>
 
         <article>
-            <img src="images/hosprun.png" alt="hospitalrun" title="hospitalrun">
-            <br/><br/>
-            <p>Github:<a href="https://github.com/hospitalrun">https://github.com/hospitalrun</a></p>           
-            <footer class="source"></footer>
+            <footer class="source">
+                <p>Check us out: <a href="http://hospitalrun.io">http://hospitalrun.io</a></p>
+                <p>GitHub: <a href="https://github.com/hospitalrun">https://github.com/hospitalrun</a></p>
+                <p>Twitter: <a href="https://twitter.com/hospitalrun">https://twitter.com/hospitalrun</a></p>
+            </footer>
         </article>
     </slide>
     
