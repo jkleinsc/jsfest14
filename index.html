@@ -26,12 +26,13 @@ URL: https://code.google.com/p/io-2012-slides
 <body style="opacity: 0">
 
 <slides class="layout-widescreen">
-    <slide class="title-slide fill nobackground" style="background-image: url(images/offline_app.jpg)">
+    <slide class="title-slide fill nobackground" style="background-image: url(images/firefly.jpg)">
         <aside class="note">
           <section>
             <ul>
-              <li>CURE is a non-profit organization that operates hospitals and programs in 29 countries worldwide treating kids with conditions like clubfoot and hydrocephalus.</li>          
-              <li>I have been developing for the web since 1997 and am currently working on apps for the developing world.</li>
+                <li>CURE is a non-profit organization that operates hospitals and programs in 29 countries worldwide treating kids with conditions like clubfoot and hydrocephalus.</li>          
+                <li>I have been developing for the web since 1997 and am currently working on health care webapps for third world countries.</li>
+                <li>Raynos/Jake just gave us a view of the server side of building apps, but what happens when your server is offline?Building Offline First gives us a strategy for dealing with this.</li>
             </ul>        
           </section>
         </aside>
@@ -45,7 +46,7 @@ URL: https://code.google.com/p/io-2012-slides
                 <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
                 <p data-config-presenter><!-- populated from slide_config.json --></p>
             </hgroup>
-            source: www.flickr.com/photos/stephendann/80558500
+            photo source: www.flickr.com/photos/johncrider/7367385756
         </footer>
     </slide>
     
@@ -105,9 +106,9 @@ URL: https://code.google.com/p/io-2012-slides
         <aside class="note">
             <section>
                 <ul>
-                    <li>Hydrocephalus-water on the brain;400,000 born this year, mostly in the developing world.</li>
+                    <li>Hydrocephalus-water on the brain;</li>
                     <li>Without surgery it is deadly, but Tom (right) was treated at CURE Uganda and is now an excellent student</li>
-                    <li>CURE Hydrocephalus program -- Operating in 15 countries; Work with local surgeons and hospitals.  The work from this network is being used by researchers at Harvard and Penn State to improve the worldwide treatment of hydrocephalus.</li>
+                    <li>CURE Hydrocephalus program -- Operating in 15 countries; Work with local surgeons and hospitals.</li>
                     <li>But, there was a problem....</li>
                 </ul>        
             </section>
@@ -129,7 +130,6 @@ URL: https://code.google.com/p/io-2012-slides
                     <li>Needed something portable</li>
                     <li>Needed something that could be deployed worldwide</li>
                     <li>Needed something that could sync to a central location</li>
-                    <li>Traditional approach -- local db and server -- </li>
                     <li>What if we built a webapp using HTML5 offline features?</li>
                 </ul>
             </section>
@@ -158,39 +158,44 @@ URL: https://code.google.com/p/io-2012-slides
         <article>
             <footer class="source"></footer>
         </article>
-    </slide>        
-
-    <slide>
+    </slide>
+    <slide class="fill nobackground" style="background-color: #000;">
         <aside class="note">
             <section>
                 <ul>
-                    <li>In thinking about offline first apps, you need a survivalist mentality.</li>
-                    <li>I found this zombie apocalypse survival list which can help guide us.</li>
-                    <li>
-                        <ul>
-                            <li>We can follow the rules of offline survival listed here: 1) Application Cache</li>
-                            <li>2) IndexedDB</li>
-                            <li>3) FileSystem API</li>
-                            <li>4) Syncing online</li>
-                        </ul>
-                    </li>
-                    <li>Now that we have a list, lets take a look how the web app I built follows these rules.</li>
+                    <li>OH SHOOT, I JUST LOST MY CONNECTION</li>
+                    <li>Maybe I should have made this an offline first presentation</li>
+                </ul>        
+            </section>
+        </aside>
+
+    </slide>
+
+
+    <slide class="fill nobackground" style="background-image: url(images/firefly.jpg); background-repeat: no-repeat;">
+        <aside class="note">
+            <section>
+                <ul>
+                    <li>Ok, just kidding, but that last slide reminds me of the TV show Revolution.</li>
+                    <li>The thing that intrigues me about Revolution is that it answers the question, how do you survive if electricity disappered?</li>
+                    <li>In building offline first, we need to answer a similar question, how do you survive offline?</li>
+                    <li>Now that we have a list, lets take a look how the web app I built follows this list.</li>
                 </ul>
             </section>
         </aside>
         <hgroup>
-            <h2>Rules for Survival</h2>
+            <h2 class="white">Living in an offline world</h2>
         </hgroup>
         <article class="flexbox">
-            <img src="images/list.jpg" class="reflect" alt="Rules" title="Rules">
-            <ul class="build">
-                <li>Live off the grid in a fortified shelter</li>
-                <li>Store your supplies</li>
+            <!--img src="images/list.jpg" class="reflect" alt="Rules" title="Rules"-->
+            <ul class="build white">
+                <li>Live off the grid</li>
+                <li>Stash your supplies</li>
                 <li>Have adequate weaponry</li>
-                <li>Use your escape plan</li>
+                <li>Have an escape plan</li>
             </ul>
             <footer class="source white">
-                source: www.flickr.com/photos/stephendann/80558500
+                source: www.flickr.com/photos/johncrider/7367385756
             </footer>
         </article>
     </slide>
@@ -199,10 +204,9 @@ URL: https://code.google.com/p/io-2012-slides
         <aside class="note">
             <section>
                 <ul>
-                    <li>The first rule for survival is to live off the grid in a fortified shelter.</li>
+                    <li>The first rule of offline survival is to live off the grid.</li>
                     <li>Application Cache is used to save all the resources required to render a page offline.</li>
-                    <li>Application Cache can be challenging to work with.</li>
-                    <li>While Application Cache can be painful to work with for single page apps it works pretty well.</li>
+                    <li>Application Cache can be challenging to work with but for single page apps it works pretty well.</li>
                 </ul>        
             </section>
         </aside>      
@@ -258,8 +262,7 @@ URL: https://code.google.com/p/io-2012-slides
                 <ul>
                     <li>The only way to update the application cache is to change the manifest file.</li>
                     <li>You can make the application manifest dynamic to make sure updates are picked up.</li>
-                    <li>In this example the manifest file gets updated every time the app file gets updated by a build.</li>                    
-                    <li>Application cache works in conjuction with the existing browser cache.</li>
+                    <li>This example is a simple php file that generates a new manifest file every time the js app file gets updated by a build.</li>
                 </ul>        
             </section>
         </aside>           
@@ -355,7 +358,7 @@ URL: https://code.google.com/p/io-2012-slides
         </aside>           
       
         <hgroup>
-            <h2 class="white">Supplies: IndexedDB</h2>
+            <h2 class="white">Stash your supplies: IndexedDB</h2>
         </hgroup>
         <article>
             <footer class="source white">source: www.flickr.com/photos/24218656@N03/5934567119</footer>
@@ -389,7 +392,7 @@ URL: https://code.google.com/p/io-2012-slides
             </section>
         </aside>      
         <hgroup>
-            <h2>Supplies: IndexedDB</h2>
+            <h2>Stash your supplies: IndexedDB</h2>
         </hgroup>
         <article>
             <pre class="prettyprint" data-lang="javascript">
@@ -425,7 +428,7 @@ openRequest.onsuccess = function(successEvent) {
             </section>
         </aside>     
         <hgroup>
-            <h2>Supplies: IndexedDB</h2>
+            <h2>Stash your supplies: IndexedDB</h2>
         </hgroup>
         <article>
             <pre class="prettyprint" data-lang="javascript">
@@ -464,7 +467,7 @@ function doStuffAfterOpen() { //This will only work after the async call to open
             </section>
         </aside>     
         <hgroup>
-            <h2>Supplies: IndexedDB</h2>
+            <h2>Stash your supplies: IndexedDB</h2>
         </hgroup>
         <article>
             <pre class="prettyprint" data-lang="javascript">
@@ -498,7 +501,7 @@ idxRequest.onsuccess = function(successEvent) {//Found cat beards!!!!};
             </section>
         </aside>      
         <hgroup>
-            <h2>Supplies: IndexedDB</h2>
+            <h2>Stash your supplies: IndexedDB</h2>
         </hgroup>
         <article class="flexbox">
             <img src="images/chromeconsole.png" alt="Chrome Developer Tools" title="Rules">     
@@ -704,8 +707,7 @@ window.requestFileSystem(PERSISTENT, size, getFileAsDataURL, handleError);
         <aside class="note">
             <section>
                 <ul>
-                    <li>So far we have looked at three rules for survival: 1) Fortified shelter(Application Cache), 2) Supplies(Indexed DB) and 3) Adequate weaponry(Filesystem API)</li>
-                    <li>Now let's look at our last rule of survival:  Use your escape plan.  Storing data offline becomes much more useful if we can also save it online</li>
+                    <li>Now let's look at our last rule of survival:  Have an escape plan.  Storing data offline becomes much more useful if we can also save it online</li>
                     <li>The app I built syncs online for two reasons: 1) Research and 2) If a user's computer is stolen or broken, we can restore their data from the online repo.</li>
                 </ul>
             </section>
@@ -722,10 +724,12 @@ window.requestFileSystem(PERSISTENT, size, getFileAsDataURL, handleError);
         <aside class="note">
             <section>
                 <ul>
-                    <li>In order to properly execute our escape plan, we first need to know when we are online</li>
+                    <li>An important part of our escape plan is to find out when we are online</li>
                     <li>Fortunately HTML5 gives us the navigator.onLine property</li>          
                     <li>Let's look at the definition of this property</li>
                     <li>Might be online seems ridiculous, but if you think about it, your online connectivity may actual vary from site to site due to site outages, dns problems and DDOS</li>
+                    <li>Online/offline events</li>
+                    <li>XHR is our friend</li>
                 </ul>
             </section>
         </aside>
