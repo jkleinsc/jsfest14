@@ -352,7 +352,7 @@ SlideDeck.prototype.loadConfig_ = function(config) {
       var github = p.github ? '<span>github</span><a href="' + p.github +
           '">' + p.github.replace(/https?:\/\//, '') + '</a>' : '';
               
-      var offlinefirst = p.offlinefirst ? '<span>offline first</span><a href="' + p.offlinefirst +
+      var offlinefirst = p.offlinefirst ? '<span>links</span><a href="http://hospitalrun.io">hospitalrun.io</a>  <a href="' + p.offlinefirst +
           '">' + p.offlinefirst.replace(/https?:\/\//, '') + '</a>' : '';
 
       //var html2 = [gplus, twitter, www, github, offlinefirst].join('<br>');
